@@ -1,67 +1,116 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="keywords"
+    content="unique login form,leamug login form,boostrap login form,responsive login form,free css html login form,download login form">
+  <meta name="author" content="leamug">
+  <!-- Bootstrap core Library -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
+  <!-- Font Awesome-->
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
 <body>
   <!-- Page Content -->
-  <div class="container text-center">
+  <div class="container">
     <form class="form-horizontal">
-    <fieldset>
+      <fieldset>
 
-    <!-- Form Name -->
-    <legend>Registrarse</legend>
+        <!-- Form Name -->
+        <legend>
+          <h1>Registrarse</h1>
+        </legend>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="name">Nombre</label>
-      <div class="col-md-4">
-      <input id="name" name="name" type="text" placeholder="" class="form-control input-md">
-      <span class="help-block">Ingrese su nombre</span>
-      </div>
-    </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="name">Nombre</label>
+          <div class="col-md-4">
+            <input id="name" name="name" type="text" placeholder="" class="form-control input-md">
+            <span class="help-block">Ingrese su nombre</span>
+          </div>
+        </div>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="surname">Apellido</label>
-      <div class="col-md-4">
-      <input id="surname" name="surname" type="text" placeholder="" class="form-control input-md">
-      <span class="help-block">Ingrese su apellido</span>
-      </div>
-    </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="surname">Apellido</label>
+          <div class="col-md-4">
+            <input id="surname" name="surname" type="text" placeholder="" class="form-control input-md">
+            <span class="help-block">Ingrese su apellido</span>
+          </div>
+        </div>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="email">E-mail</label>
-      <div class="col-md-4">
-      <input id="email" name="email" type="text" placeholder="" class="form-control input-md">
-      <span class="help-block">Ingrese su e-mail</span>
-      </div>
-    </div>
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="email">E-mail</label>
+          <div class="col-md-4">
+            <input id="email" name="email" type="text" placeholder="" class="form-control input-md">
+            <span class="help-block">Ingrese su e-mail</span>
+          </div>
+        </div>
 
-    <!-- Password input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="password">Contraseña</label>
-      <div class="col-md-4">
-        <input id="password" name="password" type="password" placeholder="" class="form-control input-md">
-        <span class="help-block">Ingrese su contraseña</span>
-      </div>
-    </div>
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Contraseña</label>
+          <div class="col-md-4">
+            <input id="password" name="password" type="password" placeholder="" class="form-control input-md">
+            <span class="help-block">Ingrese su contraseña</span>
+          </div>
+        </div>
 
-    <!-- Multiple Checkboxes -->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
-        <select class="custom-select col-md-4" id="inlineFormCustomSelect">
-          <option selected>Seleccionar...</option>
-          <option value="1">Paciente</option>
-          <option value="2">Especialista</option>
-          <option value="3">Recepcionista</option>
-        </select>
-    </div>
-    <!-- Button -->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="buttonRegistry"></label>
-      <div class="col-md-4">
-        <button id="buttonRegistry" name="buttonRegistry" class="btn btn-success">Registrarse</button>
-      </div>
-    </div>
+        <!-- Multiple Checkboxes -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="inlineFormCustomSelect">Tipo de usuario</label>
+          <select class="custom-select col-md-4" id="inlineFormCustomSelect"
+            (change)="tipoUserChanged($event.target.value)">
+            <option selected>Seleccionar...</option>
+            <option value="1">Paciente</option>
+            <option value="2">Especialista</option>
+            <option value="3">Recepcionista</option>
+          </select>
+        </div>
 
-    </fieldset>
+        <div class="form-group" id="esPaciente">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" (click)="checkedOS($event.target.value)" name="tipoPaciente"
+              id="tipoPaciente1" value="1">
+            <label class="form-check-label" for="tipoPaciente1">Particular</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" (click)="checkedOS($event.target.value)" name="tipoPaciente"
+              id="tipoPaciente2" value="2">
+            <label class="form-check-label" for="tipoPaciente2">Por Obra Social</label>
+          </div>
+          <div class="form-group" id="obraSocialGroupDiv">
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="obrasocial">Obra social</label>
+              <div class="col-md-4">
+                <input id="obrasocial" name="obrasocial" type="text" placeholder="" class="form-control input-md">
+                <span class="help-block">Ingrese el nombre de su obra social</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="credencial">Nro. de credencial</label>
+              <div class="col-md-4">
+                <input id="credencial" name="credencial" type="text" placeholder="" class="form-control input-md">
+                <span class="help-block">Ingrese su Nro. de credencial</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="buttonRegistry"></label>
+          <div class="col-md-4">
+            <button id="buttonRegistry" name="buttonRegistry" class="btn btn-success">Registrarse</button>
+            <label class="col-md-4 control-label" for="buttonCancel"></label>
+            <button id="buttonCancel" name="buttonCancel" routerLink="/login" class="btn btn-danger">Cancelar</button>
+          </div>
+        </div>
+      </fieldset>
     </form>
   </div>
 </body>

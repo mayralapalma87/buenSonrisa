@@ -11,5 +11,20 @@ export class RegistrarseComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  checkedOS(value) {
+// tslint:disable-next-line: no-debugger
+    if (value === '2') {
+      document.getElementById('obraSocialGroupDiv').style.display = 'inherit';
+    } else {
+      document.getElementById('obraSocialGroupDiv').style.display = 'none';
+    }
+  }
+  tipoUserChanged(value) {
+// tslint:disable-next-line: no-debugger
+    if (value === '1') {
+     document.getElementById('esPaciente').style.display = 'inherit';
+    } else {
+      document.getElementById('esPaciente').style.display = 'none';
+    }
+  }
 }
