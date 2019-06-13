@@ -36,9 +36,9 @@
         <div class="form-login"><br>
           <h4>Ingreso al sistema de turnos</h4>
           <br>
-          <input type="text" id="userName" class="form-control input-sm chat-input" placeholder="Usuario" />
+          <input type="email" [(ngModel)]="user.email" name='email' id="userName" class="form-control input-sm chat-input" placeholder="Emails" />
           <br><br>
-          <input type="text" id="userPassword" class="form-control input-sm chat-input" placeholder="Contraseña" />
+          <input type="password" id="userPassword" [(ngModel)]="user.clave" name="clave" class="form-control input-sm chat-input" placeholder="Contraseña" />
           <br><br>
           <div class="wrapper">
             <span class="group-btn">

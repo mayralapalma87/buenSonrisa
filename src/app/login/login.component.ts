@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WsService } from '../services/ws/ws.service';
+import { User } from 'src/clases/user';
 
 @Component({
   selector: 'app-login',
@@ -9,44 +11,33 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   [x: string]: any;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private ws: WsService) {
+    this.user.email = '';
   }
 
-ngOnInit() {
+  user: User = new User('', '');
+  url = 'http://localhost:8012/servidor/jwt/';
+
+  enviar() {
+    console.log( this.user );
+    this.ws.get( {} )
+    .then( data => {
+      console.log(data);
+      if ( data.token ) {
+        localStorage.setItem('token', data.token);
+        this.router.navigateByUrl('/Turnos');
+      }
+    })
+    .catch( e => {
+      console.log(e);
+    } );
+  }
+
+  volverAlHome() {
+    this.router.navigate(['/Turnos']);
+  }
+
+  ngOnInit() {
+  }
 }
-// ------- Authenticate function
-authenticate() {
-    let user = {username: '', password: ''};
-    // ----- Users json
-    let validUsers = [
-            {username: 'chandler@friends.com', password: '1234'},
-            {username: 'ross@friends.com', password: '1234'},
-            {username: 'joey@friends.com', password: '1234'},
-            {username: 'rechal@friends.com', password: '1234'}
-          ];
-    let showError = false; // set Error flag
-    let showSuccess = false; // set Success Flag
-    let flag = false;
-    for (const i in validUsers) { // loop on users array
-        if (user.username === validUsers[i].username && user.password === validUsers[i].password) {
-          flag = true;
-          break;
-        } else {
-          flag = false;
-        }
-      }
-      // -------- set error or success flags
-    if (flag) {
-       showError = false;
-       showSuccess = true;
-      } else {
-       showError = true;
-       showSuccess = false;
-      }
-    }
-  volverAlHome(){
-      this.router.navigate(['/Principal']);
-  }
-  }
-
 
