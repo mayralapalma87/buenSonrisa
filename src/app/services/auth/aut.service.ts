@@ -8,7 +8,7 @@ export class AutService {
   public name: string;
   private _token: string;
   jwtHelper: JwtHelper = new JwtHelper();
-  
+
   constructor( private router: Router ) {
     this._token = localStorage.getItem('token');
   }
@@ -36,7 +36,7 @@ export class AutService {
 
   public getExpirationDate()
   {
-    
+
     try {
       console.log('getExpirationDate', this.jwtHelper.getTokenExpirationDate(this._token))
       return this.jwtHelper.getTokenExpirationDate(this._token);
@@ -62,6 +62,6 @@ export class AutService {
       return this.jwtHelper.decodeToken(this._token).nivel;
     else
       return 1000;
-    
+
   }
 }

@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Http, RequestOptions } from '@angular/http';
 import { AuthHttp, AuthConfig } from 'angular2-jwt';
-import { HttpClientModule } from '@angular/common/http';
 
-export function authHttpServiceFactory(private http: HttpClient, options: RequestOptions) {
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
   return new AuthHttp(new AuthConfig(), http, options);
 }
 
@@ -20,12 +19,8 @@ export function authHttpServiceFactory(private http: HttpClient, options: Reques
     {
       provide: AuthHttp,
       useFactory: authHttpServiceFactory,
-      deps: [HttpClientModule, RequestOptions]
+      deps: [Http, RequestOptions]
     }
   ]
 })
 export class JwtModule { }
-
-
-
-
