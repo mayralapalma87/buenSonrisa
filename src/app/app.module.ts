@@ -11,11 +11,13 @@ import { NuevoTurnoComponent } from './nuevoTurno/nuevoTurno.component';
 import { AgendaEspecialistaComponent } from './agendaEspecialista/agendaEspecialista.component';
 import { MenuRecepcionComponent } from './menuRecepcion/menuRecepcion.component';
 import { ProfileComponent } from './Profile/Profile.component';
-import { HttpModule } from '@angular/http';
-import { WsService } from './services/ws/ws.service';
-import { AutService } from './services/auth/aut.service';
-import { VerificarJWTService } from './services/verificar-jwt/verificar-jwt.service';
-import { JwtModule } from './jwt/jwt.module';
+import { NavbarComponent } from './navbar/navbar.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
    declarations: [
@@ -26,19 +28,20 @@ import { JwtModule } from './jwt/jwt.module';
       NuevoTurnoComponent,
       AgendaEspecialistaComponent,
       MenuRecepcionComponent,
-      ProfileComponent
+      ProfileComponent,
+      NavbarComponent
    ],
    imports: [
       BrowserModule,
       AppRoutingModule,
       FormsModule,
       HttpClientModule,
-      HttpModule
+      AngularFireModule.initializeApp(environment.firebaseConfig),
+      AngularFireDatabaseModule,
+      AngularFireStorageModule,
    ],
    providers: [
-    WsService,
-    AutService,
-    VerificarJWTService,
+     AngularFireAuth,
    ],
    bootstrap: [
       AppComponent

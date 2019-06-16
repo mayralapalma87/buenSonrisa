@@ -5,6 +5,7 @@ import { ErrorComponent } from './error/error.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { NuevoTurnoComponent } from './nuevoTurno/nuevoTurno.component';
 import { ProfileComponent } from './Profile/Profile.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
   {path: '' , component: LoginComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: '**' , component: ErrorComponent},
   {path: 'turnos' , component: NuevoTurnoComponent},
   {path: 'perfil' , component: ProfileComponent},
+  {path: 'navbar' , component: NavbarComponent},
   {path: 'error' , component: ErrorComponent}
 ];
 

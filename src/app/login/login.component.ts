@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { WsService } from '../services/ws/ws.service';
 import { User } from 'src/clases/user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase/app';
+
 
 @Component({
   selector: 'app-login',
@@ -9,33 +11,23 @@ import { User } from 'src/clases/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  [x: string]: any;
 
-  constructor(private router: Router, private ws: WsService) {
-    this.user.email = '';
+  constructor(public afAuth: AngularFireAuth, private router: Router) {
+    //public usuario : new User{private email: string , private clave: string};
+  }
+  onLoginFacebook() {
+    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
+    this.router.navigate(['/perfil']);
+  }
+  onLoginGoogle() {
+      this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider());
+      this.router.navigate(['/perfil']);
+  }
+  onLogout() {
+    this.afAuth.auth.signOut();
+    this.router.navigate(['/login']);
   }
 
-  user: User = new User('', '');
-  url = 'http://localhost:8012/servidor/jwt/';
-
-  enviar() {
-    console.log( this.user );
-    this.ws.get( {} )
-    .then( data => {
-      console.log(data);
-      if ( data.token ) {
-        localStorage.setItem('token', data.token);
-        this.router.navigateByUrl('/turnos');
-      }
-    })
-    .catch( e => {
-      console.log(e);
-    } );
-  }
-
-  volverAlHome() {
-    this.router.navigate(['/Turnos']);
-  }
 
   ngOnInit() {
   }
