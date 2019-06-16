@@ -1,10 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<!--author:starttemplate-->
-<!--reference site : starttemplate.com-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,16 +29,18 @@
         <div class="form-login"><br>
           <h4>Ingreso al sistema de turnos</h4>
           <br>
-          <input type="email" [(ngModel)]="user.email" name='email' id="userName"
+          <!-- [(ngModel)]="user.email" -->
+          <input type="email"  name='email' id="userName"
             class="form-control input-sm chat-input" placeholder="Emails" />
           <br><br>
-          <input type="password" id="userPassword" [(ngModel)]="user.clave" name="clave"
+          <!-- [(ngModel)]="user.clave" -->
+          <input type="password" id="userPassword"  name="clave"
             class="form-control input-sm chat-input" placeholder="Contraseña" />
           <br><br>
           <div class="wrapper">
             <div class="form-group">
               <span class="group-btn">
-                <button type="submit" class="btn btn-block btn-primary btn-md">
+                <button type="submit" routerLink="/perfil" class="btn btn-block btn-primary btn-md">
                   Ingresar <i class="fa fa-sign-in"> </i></button>
                 <button class="btn btn-block btn-social btn-facebook" (click)="onLoginFacebook()">
                   <span class="fa fa-facebook"></span>

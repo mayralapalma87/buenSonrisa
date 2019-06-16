@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/clases/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
+import { AuthService } from '../../app/services/auth.service';
 
 
 @Component({
@@ -12,23 +13,29 @@ import { auth } from 'firebase/app';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public afAuth: AngularFireAuth, private router: Router) {
-    //public usuario : new User{private email: string , private clave: string};
-  }
-  onLoginFacebook() {
-    this.afAuth.auth.signInWithPopup(new auth.FacebookAuthProvider());
-    this.router.navigate(['/perfil']);
-  }
-  onLoginGoogle() {
-      this.afAuth.auth.signInWithPopup(new auth.GithubAuthProvider());
-      this.router.navigate(['/perfil']);
-  }
-  onLogout() {
-    this.afAuth.auth.signOut();
-    this.router.navigate(['/login']);
+  constructor(public afAuth: AngularFireAuth, private router: Router, private authservice: AuthService) {
+    // public usuario : new User{private email: string , private clave: string};
   }
 
-
+  onLogout(): void {
+    this.authservice.onLogout()
+    .then((res) => {
+        this.router.navigate(['../login']);
+    }).catch();
+  }
+  onLoginFacebook(): void {
+    this.authservice.onLoginFacebook()
+    .then((res) => {
+        this.router.navigate(['../perfil']);
+    }).catch();
+  }
+  onLoginGoogle(): void {
+    this.authservice.onLoginGoogle()
+    .then((res) => {
+        this.router.navigate(['../perfil']);
+    }).catch();
+  }
+  onLoginEmailUser(email: string, pass: string) {}
   ngOnInit() {
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AuthService } from '../../app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,30 +9,31 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth: AuthService, private afsauth: AngularFireAuth) { }
 // tslint:disable-next-line: variable-name
   public app_name = 'BuenaSonrisa';
 // tslint:disable-next-line: no-inferrable-types
   public isLogged: boolean = false;
+
   ngOnInit() {
     this.getCurrentUser();
   }
 
   getCurrentUser() {
-    /* this.authService.isAuth().subscribe(auth => {
+    this.auth.isAuth().subscribe(auth => {
       if (auth) {
         console.log('user logged');
         this.isLogged = true;
       } else {
-        console.log('NOT user logged');
+        console.log('user is NOT logged');
         this.isLogged = false;
       }
-    }); */
+    });
   }
 
   onLogout() {
 // tslint:disable-next-line: comment-format
-    //this.afsAuth.auth.signOut();
+    this.afsauth.auth.signOut();
   }
 
 

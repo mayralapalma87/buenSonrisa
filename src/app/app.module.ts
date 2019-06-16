@@ -10,7 +10,6 @@ import { RegistrarseComponent } from './registrarse/registrarse.component';
 import { NuevoTurnoComponent } from './nuevoTurno/nuevoTurno.component';
 import { AgendaEspecialistaComponent } from './agendaEspecialista/agendaEspecialista.component';
 import { MenuRecepcionComponent } from './menuRecepcion/menuRecepcion.component';
-import { ProfileComponent } from './Profile/Profile.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -18,6 +17,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
 
 @NgModule({
    declarations: [
@@ -28,8 +29,9 @@ import { AngularFirestore } from '@angular/fire/firestore';
       NuevoTurnoComponent,
       AgendaEspecialistaComponent,
       MenuRecepcionComponent,
-      ProfileComponent,
-      NavbarComponent
+      NavbarComponent,
+      PerfilComponent,
+      ListaTurnosComponent
    ],
    imports: [
       BrowserModule,
