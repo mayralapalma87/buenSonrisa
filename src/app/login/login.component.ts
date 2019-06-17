@@ -4,7 +4,7 @@ import { User } from 'src/clases/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { AuthService } from '../../app/services/auth.service';
-
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -12,30 +12,45 @@ import { AuthService } from '../../app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(public afAuth: AngularFireAuth, private router: Router, private authservice: AuthService) {
+  email = '';
+  pass = '';
+// tslint:disable-next-line: variable-name
+  constructor(private router: Router, private authservice: AuthService, private _ngZone: NgZone) {
     // public usuario : new User{private email: string , private clave: string};
   }
-
-  onLogout(): void {
-    this.authservice.onLogout()
+  onLogin() {
+    console.log(this.email);
+    console.log(this.pass);
+    this.authservice.onLoginEmailUser(this.email, this.pass)
     .then((res) => {
-        this.router.navigate(['../login']);
+      this.redirectToPerfil();
     }).catch();
   }
   onLoginFacebook(): void {
     this.authservice.onLoginFacebook()
     .then((res) => {
-        this.router.navigate(['../perfil']);
+      this.redirectToPerfil();
     }).catch();
   }
   onLoginGoogle(): void {
     this.authservice.onLoginGoogle()
     .then((res) => {
-        this.router.navigate(['../perfil']);
+      this.redirectToPerfil();
     }).catch();
   }
-  onLoginEmailUser(email: string, pass: string) {}
+  onLogout(): void {
+    this.authservice.onLogout()
+    .then((res) => {
+      this._ngZone.run(() => {
+        this.router.navigate(['login']);
+      });
+    }).catch();
+  }
+  redirectToPerfil(): void {
+    this._ngZone.run(() => {
+      this.router.navigate(['miPerfil']);
+    });
+  }
   ngOnInit() {
   }
 }

@@ -4,17 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="keywords"
-    content="unique login form,leamug login form,boostrap login form,responsive login form,free css html login form,download login form">
-  <meta name="author" content="leamug">
-  <!-- Bootstrap core Library -->
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet">
-  <!-- Font Awesome-->
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,21 +15,21 @@
         <span class="icon-bar">
           <i class="fa fa-tooth"></i>
         </span>
-        <div class="form-login"><br>
+        <form class="form-login" (submit)="onLogin()"><br>
           <h4>Ingreso al sistema de turnos</h4>
           <br>
           <!-- [(ngModel)]="user.email" -->
-          <input type="email"  name='email' id="userName"
-            class="form-control input-sm chat-input" placeholder="Emails" />
-          <br><br>
+          <input type="email" [(ngModel)]="email" name='email' id="userName" class="form-control input-sm chat-input"
+            placeholder="Emails" />
+          <br>
           <!-- [(ngModel)]="user.clave" -->
-          <input type="password" id="userPassword"  name="clave"
+          <input type="password" [(ngModel)]="pass" id="userPassword" name="clave"
             class="form-control input-sm chat-input" placeholder="Contraseña" />
           <br><br>
           <div class="wrapper">
             <div class="form-group">
               <span class="group-btn">
-                <button type="submit" routerLink="/perfil" class="btn btn-block btn-primary btn-md">
+                <button type="submit" class="btn btn-block btn-primary btn-md">
                   Ingresar <i class="fa fa-sign-in"> </i></button>
                 <button class="btn btn-block btn-social btn-facebook" (click)="onLoginFacebook()">
                   <span class="fa fa-facebook"></span>
@@ -59,7 +48,7 @@
           <a href="#" class="btn btn-link" style="font-size: 18px;">
             Se olvido la contraseña?
           </a>
-        </div>
+        </form>
       </div>
       <br><br><br>
 

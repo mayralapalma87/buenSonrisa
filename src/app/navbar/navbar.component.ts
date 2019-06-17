@@ -33,7 +33,7 @@ export class NavbarComponent implements OnInit {
 
   onLogout() {
 // tslint:disable-next-line: comment-format
-    this.afsauth.auth.signOut();
+    this.auth.onLogout();
   }
 
 

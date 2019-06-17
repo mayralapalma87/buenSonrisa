@@ -17,8 +17,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { PerfilComponent } from './perfil/perfil.component';
-import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
+import { MisTurnosComponent } from './misTurnos/misTurnos.component';
+import { MiPerfilComponent } from './miPerfil/miPerfil.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
    declarations: [
@@ -30,8 +31,9 @@ import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
       AgendaEspecialistaComponent,
       MenuRecepcionComponent,
       NavbarComponent,
-      PerfilComponent,
-      ListaTurnosComponent
+      MisTurnosComponent,
+      MiPerfilComponent,
+      HomeComponent
    ],
    imports: [
       BrowserModule,
@@ -40,10 +42,10 @@ import { ListaTurnosComponent } from './lista-turnos/lista-turnos.component';
       HttpClientModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
       AngularFireDatabaseModule,
-      AngularFireStorageModule,
+      AngularFireStorageModule
    ],
    providers: [
-     AngularFireAuth,
+      AngularFireAuth
    ],
    bootstrap: [
       AppComponent
