@@ -1,4 +1,5 @@
 export interface turnoInteface {
+  id?: any;
   cliente?: any;
   especialista?: any;
   encuesta?: any;

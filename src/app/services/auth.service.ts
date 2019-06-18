@@ -1,3 +1,4 @@
+import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { map } from 'rxjs/operators';
@@ -16,7 +17,6 @@ export class AuthService {
 // tslint:disable-next-line: no-shadowed-variable
     return this.afsauth.authState.pipe(map(auth => auth));
   }
-
   onLoginFacebook() {
     return this.afsauth.auth.signInWithPopup(new auth.FacebookAuthProvider());
   }
@@ -32,10 +32,10 @@ export class AuthService {
         err => reject(err));
     });
   }
-  onRegisterUser(email: string, pass: string) {
+  onRegisterUser(user: User) {
 // tslint:disable-next-line: no-shadowed-variable
     return new Promise((resolve, reject) => {
-      this.afsauth.auth.createUserWithEmailAndPassword(email, pass)
+      this.afsauth.auth.createUserWithEmailAndPassword(user.email, user.clave)
         .then(userData => {
           resolve(userData),
             this.updateUserData(userData.user);

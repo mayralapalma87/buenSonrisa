@@ -1,8 +1,8 @@
 import { Persona } from './persona';
-import { Turnos } from './turnos';
+import { Turno } from './turno';
 
 export class Empleados extends Persona{
   public rol: string;
   public idEmpleado: Int32Array;
-  public turnos: Array<Turnos>;
+  public turnos: Array<Turno>;
 }

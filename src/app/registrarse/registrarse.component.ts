@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef , ViewChild} from '@angular/core';
 import { AuthService } from '../../app/services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-registrarse',
@@ -12,13 +13,17 @@ import { Observable } from 'rxjs';
 })
 
 export class RegistrarseComponent implements OnInit {
-  email = '';
-  pass = '';
+  user: User = {
+    nombre: '',
+    apellido: '',
+    telefono: '',
+    foto: ''
+  };
   uploadPercent: Observable<number>;
   urlImage: Observable<string>;
 
   constructor(private router: Router, private authservice: AuthService, private storage: AngularFireStorage) { }
-
+  @ViewChild('imageUser') inpupImageUser: ElementRef;
   ngOnInit() {
   }
 
@@ -49,8 +54,20 @@ export class RegistrarseComponent implements OnInit {
     task.snapshotChanges().pipe( finalize(() => this.urlImage = ref.getDownloadURL())).subscribe();
   }
   onAddUser() {
-    this.authservice.onRegisterUser(this.email, this.pass)
+    this.authservice.onRegisterUser(this.user)
     .then((res) => {
+      this.authservice.isAuth().subscribe( userService => {
+        if (userService) {
+          userService.updateProfile({
+            displayName: this.user.nombre + ' ' + this.user.apellido,
+            photoURL: this.inpupImageUser.nativeElement.value
+          }).then( () => {
+            console.log('User updated.');
+          }).catch( (error) => {
+            console.log('error', error);
+          });
+        }
+      });
       this.router.navigate(['misTurnos']);
     }).catch();
   }

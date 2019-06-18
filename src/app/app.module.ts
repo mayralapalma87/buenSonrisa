@@ -45,7 +45,8 @@ import { HomeComponent } from './home/home.component';
       AngularFireStorageModule
    ],
    providers: [
-      AngularFireAuth
+      AngularFireAuth,
+      AngularFirestore
    ],
    bootstrap: [
       AppComponent
