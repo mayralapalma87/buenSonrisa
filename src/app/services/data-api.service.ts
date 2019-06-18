@@ -2,7 +2,6 @@ import { turnoInteface } from './../models/turnoInterface';
 import { AuthService } from './auth.service';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
-import { Turno } from '../models/turno';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ChangeDetectorStatus } from '@angular/core/src/change_detection/constants';
