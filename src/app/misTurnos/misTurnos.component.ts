@@ -14,8 +14,15 @@ export class MisTurnosComponent implements OnInit {
   public turno = '';
 
   ngOnInit() {
+    this.getTurnos();
+  }
+
+  getTurnos() {
     this.dataApi.getTurnos().subscribe( turnos => {
-      console.log('Turnos', turnos);
+      this.turnos = turnos;
     });
+  }
+  public reiniciar() {
+    this.turnos = [];
   }
 }

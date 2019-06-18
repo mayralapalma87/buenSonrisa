@@ -1,6 +1,7 @@
-import { Persona } from './persona';
+import { User } from 'src/app/models//user';
 
-export class Clientes extends Persona {
+export class Clientes implements User {
+  id?: any;
   public nrocredencial: string;
   public obraSocial: string;
 }

@@ -1,8 +1,10 @@
-import { Persona } from './persona';
-import { Turno } from './turno';
+import { User } from 'src/app/models//user';
+import { turnoInteface } from './turnoInterface';
 
-export class Empleados extends Persona{
+
+export class Empleados implements User {
+  id?: any;
   public rol: string;
   public idEmpleado: Int32Array;
-  public turnos: Array<Turno>;
+  public turnos: Array<turnoInteface>;
 }
