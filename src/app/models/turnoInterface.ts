@@ -2,7 +2,7 @@
 export interface turnoInteface {
   id?: any;
   cliente?: any;
-  especiadad?: any;
+  especilidad?: any;
   especialista?: any;
   encuesta?: any;
   estado?: string;

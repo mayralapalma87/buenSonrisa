@@ -11,7 +11,6 @@ import { TurnosService } from './turnos.service';
   providedIn: 'root'
 })
 export class DataApiService {
-
   // tslint:disable-next-line: max-line-length
   constructor(private afs: AngularFirestore) {
     this.listaTurnos = afs.collection<turnoInteface>('turnos');
@@ -22,6 +21,9 @@ export class DataApiService {
   private turnos: Observable<turnoInteface[]>;
   private turnoDoc: AngularFirestoreDocument<turnoInteface>;
   private turno: Observable<turnoInteface>;
+  public selectedTurno: turnoInteface = {
+    id: null
+  };
   getTurnos() {
     return this.turnos = this.listaTurnos.snapshotChanges()
       .pipe(map(changes => {
@@ -45,10 +47,10 @@ export class DataApiService {
         }
       }));
   }
-  agregarTurnos(turno: turnoInteface): void {
+  agregarTurno(turno: turnoInteface): void {
     this.listaTurnos.add(turno);
   }
-  modificarTurnos(turno: turnoInteface) {
+  modificarTurno(turno: turnoInteface) {
     let idTurno = turno.id;
     this.turnoDoc = this.afs.doc<turnoInteface>(`turnos/${idTurno}`);
     this.turnoDoc.update(turno);

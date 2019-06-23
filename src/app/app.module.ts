@@ -20,6 +20,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { MisTurnosComponent } from './misTurnos/misTurnos.component';
 import { MiPerfilComponent } from './miPerfil/miPerfil.component';
 import { HomeComponent } from './home/home.component';
+import { ModalNuevoTurnoComponent } from './modalNuevoTurno/modalNuevoTurno.component';
 
 @NgModule({
    declarations: [
@@ -33,7 +34,8 @@ import { HomeComponent } from './home/home.component';
       NavbarComponent,
       MisTurnosComponent,
       MiPerfilComponent,
-      HomeComponent
+      HomeComponent,
+      ModalNuevoTurnoComponent
    ],
    imports: [
       BrowserModule,

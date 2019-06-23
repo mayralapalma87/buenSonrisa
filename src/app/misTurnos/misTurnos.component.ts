@@ -1,5 +1,7 @@
 import { DataApiService } from './../services/data-api.service';
 import { Component, OnInit } from '@angular/core';
+import { turnoInteface } from '../models/turnoInterface';
+import { NgForm } from '@angular/forms';
 
 @Component({
 // tslint:disable-next-line: component-selector
@@ -10,17 +12,22 @@ import { Component, OnInit } from '@angular/core';
 export class MisTurnosComponent implements OnInit {
 
   constructor(private dataApi: DataApiService) { }
-  public turnos = [];
+  public turnos: turnoInteface[];
   public turno = '';
 
   ngOnInit() {
     this.getTurnos();
   }
-
   getTurnos() {
     this.dataApi.getTurnos().subscribe( turnos => {
       this.turnos = turnos;
     });
+  }
+  cancelarTurno() {
+  }
+  modificarTurno() {
+  }
+  agregarTurno() {
   }
   public reiniciar() {
     this.turnos = [];

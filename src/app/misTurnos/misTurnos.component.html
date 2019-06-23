@@ -14,22 +14,26 @@
                 <th scope="col">Especialista</th>
                 <th scope="col">Fecha</th>
                 <th scope="col">Estado</th>
+                <th scope="col"><button class="btn btn-success float-right" data-toggle="modal" data-target="#modalNuevoTurno">Nuevo Turno</button></th>
                 <!-- <th scope="col">Foto</th> -->
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of turnos">
-                <th scope="row">{{p.id}}</th>
-                <td>{{p.especialidad}}</td>
+            <tr *ngFor="let p of turnos; index as i">
+                <th scope="row">{{i+1}}</th>
+                <td>{{p.especilidad}}</td>
                 <td>{{p.especialista}}</td>
                 <td>{{p.fecha_hora.seconds*1000 | date}}</td>
                 <td>{{p.estado}}</td>
                 <!--  <td class="thmb">
                     <img [src]='"../../assets/img"+p.foto' class="img-fluid img-thumbnail">
+                </td>-->
+                <td>
+                    <button class="btn btn-primary" (click)="modificarTurno($event.target.value)">Modificar</button>
                 </td>
                 <td>
-                    <app-boton-borrar [id]="p.id" (borrado)="seBorro($event)"></app-boton-borrar>
-                </td>  -->
+                    <button class="btn btn-danger" (click)="cancelarTurno($event.target.value)">Cancelar</button>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -56,3 +60,4 @@
         </div>
     </div>
 </div>
+<app-modalNuevoTurno></app-modalNuevoTurno>
